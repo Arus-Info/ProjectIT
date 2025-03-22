@@ -5,7 +5,8 @@
     <div v-if="!showPreview">
         <!-- <div class="flex justify-center"> -->
             <video ref="video" autoplay muted hidden playsinline webkit-playsinline></video>
-            <canvas ref="canvas" class="w-screen h-screen"></canvas>
+            <!-- <canvas ref="canvas" class="w-screen h-screen"></canvas> -->
+            <canvas ref="canvas" :height="height"  :width="width"></canvas>
         <!-- </div> -->
         <div class="fixed bottom-12 w-full flex items-center justify-between pl-10 pr-10">
             <div>
@@ -41,6 +42,9 @@ const emit = defineEmits(['close-event','capture-event'])
 const video = ref(null)
 const canvas = ref(null)
 const ctx = ref(null)
+
+const height = ref(window.innerHeight);
+const width = ref(window.innerWidth);
 
 const constraints = ref({
     video : {
@@ -122,5 +126,8 @@ function getCamera() {
 
 </script>
 <style scoped>
-
+#my-canvas{
+    height: 100vh; 
+    width:  100vw; 
+}
 </style>

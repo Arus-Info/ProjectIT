@@ -15,7 +15,7 @@
   {
    "fieldname": "start_time",
    "fieldtype": "Time",
-   "label": "Start Time"
+   "label": "Regular Hours Start Time"
   },
   {
    "fieldname": "regular_time_activity_type",
@@ -30,7 +30,7 @@
   {
    "fieldname": "end_time",
    "fieldtype": "Time",
-   "label": "End Time"
+   "label": "Regular Hours End Time"
   },
   {
    "fieldname": "over_time_activity_type",
@@ -39,10 +39,11 @@
    "options": "Activity Type"
   }
  ],
+ "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2025-03-15 18:38:19.294247",
+ "modified": "2025-03-22 12:57:36.432569",
  "modified_by": "Administrator",
  "module": "Projectit",
  "name": "Work Time Settings",
