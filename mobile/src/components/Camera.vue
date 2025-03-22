@@ -66,12 +66,14 @@ onMounted(async () => {
 onBeforeUnmount(() => {
     if(video.value)
     {
+        // videoPlayer.videoHeight / (videoPlayer.videoWidth / canvas.width)
+        console.log(video.value)
         stopCamera()
     }
 })
 
 function Draw() {
-    ctx.value.drawImage(video.value, 0, 0,window.innerWidth,window.innerHeight)
+    ctx.value.drawImage(video.value, 0, 0,width.value,video.value.videoHeight / (video.value.videoWidth / width.value))
     requestAnimationFrame(Draw)
 }
 
@@ -82,6 +84,7 @@ function stopCamera(){
 }
 
 function captureImage(){
+    console.log(video.value.videoHeight,video.value.videoWidth)
     var dataurl = canvas.value.toDataURL("image/png")
     var image = document.getElementById('preview-image')
     image.src = dataurl
