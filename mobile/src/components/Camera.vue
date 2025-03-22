@@ -6,8 +6,8 @@
         <img id="preview-image"/>
     </div>
     <div v-if="!showPreview">
+        <video ref="video" autoplay muted hidden playsinline webkit-playsinline></video>
         <div class="flex justify-center items-center h-screen bg-black">
-            <video ref="video" autoplay muted hidden playsinline webkit-playsinline></video>
             <canvas ref="canvas" :width="width"></canvas>
         </div>
         <div class="fixed bottom-12 w-full flex items-center justify-between pl-10 pr-10">
@@ -50,7 +50,9 @@ const width = ref(window.innerWidth);
 
 const constraints = ref({
     video : {
-        facingMode : "environment"
+        facingMode : "environment",
+        width: { ideal: 4096 },
+        height: { ideal: 2160 } 
     },
     audio : false
 })
