@@ -64,7 +64,6 @@ import { showCamera, cameraMode, imageFile } from '../data/camera_context';
 
 watch(imageFile,() =>{
     handleImageCapture(imageFile.value)
-    console.log(imageFile.value)
 }
 )
 dayjs.extend(customParseFormat);
@@ -302,7 +301,6 @@ async function handleImageCapture(file) {
             checkOut()
         }
     }
-    console.log(imageFile.value, "Helo")
 }
 
 const workTimings = createResource({
