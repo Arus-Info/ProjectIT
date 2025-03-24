@@ -5,10 +5,10 @@
     <div v-show="showPreview" class="flex justify-center items-center h-screen bg-black">
         <img id="preview-image"/>
     </div>
-    <div v-if="!showPreview">
+    <div v-if="!showPreview" class="h-screen">
         <video ref="video" autoplay muted hidden playsinline webkit-playsinline></video>
         <div class="flex justify-center items-center h-screen bg-black">
-            <canvas ref="canvas" :width="width"></canvas>
+            <canvas ref="canvas" :width="width" :height="height"></canvas>
         </div>
         <div class="fixed bottom-12 w-full flex items-center justify-between pl-10 pr-10">
             <div>
@@ -47,6 +47,7 @@ const canvas = ref(null)
 const ctx = ref(null)
 
 const width = ref(window.innerWidth);
+const height = ref(0);
 
 const constraints = ref({
     video : {
@@ -75,6 +76,8 @@ onBeforeUnmount(() => {
 })
 
 function Draw() {
+    height.value = video.value.videoHeight
+            console.log(video.value.videoHeight)
     ctx.value.drawImage(video.value, 0, 0,canvas.value.width,video.value.videoHeight / (video.value.videoWidth / canvas.value.width))
     requestAnimationFrame(Draw)
 }
@@ -124,6 +127,7 @@ function getCamera() {
         .then((stream) => {
             video.value.srcObject = stream
             video.value.play()
+            height.value = video.value.videoHeight
             requestAnimationFrame(Draw)
         })
 }

@@ -25,6 +25,11 @@ const routes = [
     component : () => import('@/pages/EditInstructions.vue'),
   },
   {
+    path : '/manageit/allocate-employees/:project_name',
+    name : 'AllocateEmployees',
+    component : () => import('@/pages/AllocateEmployees.vue'),
+  },
+  {
     name: 'Login',
     path: '/account/login',
     component: () => import('@/pages/Login.vue'),

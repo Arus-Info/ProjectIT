@@ -155,3 +155,21 @@ def get_modules_for_router(user_id):
     modules.append('home')
     modules = [m.lower() for m in modules ]
     return modules
+
+@frappe.whitelist()
+def get_employee_with_workit(project_name):
+    employee = frappe.db.sql("""
+
+        select mm.parent as name, e.employee_name
+        from `tabMobile Module` as mm
+        left join tabEmployee as e
+            on mm.parent = e.name
+        where module_name = "WorkIT"
+        except
+        select eai.employee as name, eai.employee_name
+        from`tabProject Allocation and Instrucions` as pai
+        left join `tabEmployee Allocation Instruction` as eai 
+            on eai.parent = pai.name
+        where  pai.project_name = %(project_name)s
+        """,{"project_name" : project_name},as_dict=True)
+    return employee

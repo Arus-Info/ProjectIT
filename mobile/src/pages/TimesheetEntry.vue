@@ -22,10 +22,14 @@
                 <div
                     class="bg-[#F5F8FF] pl-4 pr-3 pt-5 pb-3 rounded-b-md border-[#B9C8EA] border-x-2 border-b-2 flex flex-col gap-3">
                     <p> Check-In Time : {{ dayjs(timesheetDetails.from_time).format("hh:mm:ss a") }}</p>
-                    <div @click="showCamera = true; cameraMode = 'Upload'"
+                    <div @click="showCaption = true"
                         class="bg-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-sm pt-3 pb-3 pl-2 pr-2 flex gap-2">
                         <FeatherIcon name="download" class="h-6 w-6" />
                         <p>Additional Photo without Checkout</p>
+                    </div>
+                    <div v-if="showCaption" class="text-center">
+                        <textarea v-model="caption"></textarea>
+                        <PrimaryButton @click="showCamera = true; cameraMode = 'Upload'" name="Upload"></PrimaryButton>
                     </div>
                 </div>
             </div>
@@ -97,6 +101,9 @@ const checkInImage = ref([])
 
 const errorMessage = ref('')
 const showError = ref(false)
+
+const showCaption = ref(false)
+const caption = ref('')
 
 const instructions = ref({})
 const members = ref({})
@@ -173,6 +180,7 @@ const timesheet = createListResource({
             if (cameraMode.value === 'Upload') {
                 uploading.value = false
                 cameraMode.value = 'Check-Out'
+                caption.value = ''
                 toast({
                     title: "Success",
                     text: "Additional Photo Uploaded",
@@ -323,7 +331,7 @@ function checkIn() {
 function additionalImage() {
     timesheet.setValue.submit({
         name: timesheetDetails.value.name,
-        note: timesheetDetails.value.note + "<p>Additional Photo added at " + dayjs().format("hh:mm:ss A") + "</p>"
+        note: timesheetDetails.value.note + "<p>Additional Photo added at " + dayjs().format("hh:mm:ss A") + " with caption " + caption.value + "</p>"
     })
 }
 
