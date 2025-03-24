@@ -3,7 +3,7 @@
       <div v-for="p in projectListResource.data" class="pt-3">
          <div class="pl-5 pr-5 pb-2 pt-2 border-2 border-[#B9C8EA] flex flex-row justify-between">
             {{ p.project_name }}
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-7">
                <FeatherIcon name="user-plus" class="w-6 h-6" @click="add(p.project_name)" />
                <FeatherIcon name="edit" class="w-6 h-6" @click="edit(p.project_name)" />
             </div>

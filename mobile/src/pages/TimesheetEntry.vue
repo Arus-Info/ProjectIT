@@ -27,9 +27,12 @@
                         <FeatherIcon name="download" class="h-6 w-6" />
                         <p>Additional Photo without Checkout</p>
                     </div>
-                    <div v-if="showCaption" class="text-center">
+                    <div v-if="showCaption" class="text-center flex flex-col gap-3">
                         <textarea v-model="caption"></textarea>
-                        <PrimaryButton @click="showCamera = true; cameraMode = 'Upload'" name="Upload"></PrimaryButton>
+                        <div>
+                            <PrimaryButton @click="showCamera = true; cameraMode = 'Upload'" name="Upload">
+                            </PrimaryButton>
+                        </div>
                     </div>
                 </div>
             </div>
