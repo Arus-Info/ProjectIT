@@ -1,10 +1,10 @@
 ## ProjectIT
 
-Project Cost Tracking Tool
+ProjectIT is an Open Source PWA mobile app to track the Employees out in the field. This mobile app is developed on Frappe Framework and it is integrated with the Project functionalities of ERPNext and integrated tightly with Frappe HRMS.
 
 #### License
 
-gpl-3.0
+GPL-3.0
 
 Once you've set up a Frappe site, installing  is simple: Download the App using the Bench CLI
 
