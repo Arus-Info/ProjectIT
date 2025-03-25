@@ -11,7 +11,8 @@
                 <div>
                     <textarea class="border-0 w-full h-48" v-model="projectInstruction"></textarea>
                     <div class="text-center pt-4 pb-5">
-                        <PrimaryButton name="Save" @click="setInstructions"></PrimaryButton>
+                        <PrimaryButton name="Save" @click="setInstructions"
+                            :loading="projectAllocationInstructionResource.setValue.loading"></PrimaryButton>
                     </div>
                 </div>
             </div>
@@ -23,14 +24,16 @@
                     <div class="flex items-center gap-3 bg-white pt-4 pb-2 pl-4">
                         <p>Select Employee</p>
                         <select v-model="employeeInstructionId" @click="updateInstructions" class="w-40">
-                            <option :value="e.name" v-for="e in employeeInstructionListResource.data">{{ e.employee_name }}
+                            <option :value="e.name" v-for="e in employeeInstructionListResource.data">{{ e.employee_name
+                                }}
                             </option>
                         </select>
                     </div>
                     <div v-if="employeeInstructionId">
                         <textarea class="border-0 w-full h-48" v-model="employeeInstruction"></textarea>
                         <div class="text-center pt-4 pb-5">
-                            <PrimaryButton name="Save" @click="setEmployeeInstruction"></PrimaryButton>
+                            <PrimaryButton name="Save" @click="setEmployeeInstruction"
+                                :loading="employeeInstructionListResource.setValue.loading"></PrimaryButton>
                         </div>
                     </div>
                 </div>
@@ -53,12 +56,12 @@ const employeeInstruction = ref('')
 const employeeInstructionId = ref('')
 
 const employeeInstructionListResource = createListResource({
-    doctype : "Employee Allocation Instruction",
-    parent : "Project Allocation and Instrucions",
-    filters : { parent : projectInstructionId},
-    fields :["employee_name", "name","instructions"],
-    setValue : {
-        onSuccess(){
+    doctype: "Employee Allocation Instruction",
+    parent: "Project Allocation and Instrucions",
+    filters: { parent: projectInstructionId },
+    fields: ["employee_name", "name", "instructions"],
+    setValue: {
+        onSuccess() {
             employeeInstructionListResource.fetch()
             toast({
                 title: "Success",
@@ -72,16 +75,16 @@ const employeeInstructionListResource = createListResource({
 })
 
 const projectAllocationInstructionResource = createListResource({
-    doctype : "Project Allocation and Instrucions",
-    filters : {"project_name" : route.params.project_name},
-    fields : ["work_instruction","name"],
-    auto : true,
-    onSuccess(d){
+    doctype: "Project Allocation and Instrucions",
+    filters: { "project_name": route.params.project_name },
+    fields: ["work_instruction", "name"],
+    auto: true,
+    onSuccess(d) {
         projectInstruction.value = d[0].work_instruction
         projectInstructionId.value = d[0].name
         employeeInstructionListResource.fetch()
     },
-    setValue : {
+    setValue: {
         onSuccess() {
             toast({
                 title: "Success",
@@ -94,17 +97,17 @@ const projectAllocationInstructionResource = createListResource({
     }
 })
 
-function setInstructions(){
+function setInstructions() {
     projectAllocationInstructionResource.setValue.submit({
-        name : projectInstructionId.value,
-        work_instruction : projectInstruction.value
+        name: projectInstructionId.value,
+        work_instruction: projectInstruction.value
     })
 }
 
-function setEmployeeInstruction(){
+function setEmployeeInstruction() {
     employeeInstructionListResource.setValue.submit({
-        name : employeeInstructionId.value,
-        instructions : employeeInstruction.value
+        name: employeeInstructionId.value,
+        instructions: employeeInstruction.value
     })
 }
 
