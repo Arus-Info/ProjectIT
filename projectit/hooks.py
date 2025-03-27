@@ -15,6 +15,7 @@ fixtures = [
     {"dt" : "Custom Field", "filters" : [["module" , "=" , "Projectit"]] },
     {"dt" : "Property Setter", "filters" : [["module" , "=" , "Projectit"]] },
     {"dt" : "DocType Link", "filters" : [["name" , "=" , "v8sdmt8hqv"]] },
+    {"dt" : "Mobile Module Item" }
     ]
 
 # Each item in the list will be shown as an app in the apps page
