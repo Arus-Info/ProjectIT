@@ -28,7 +28,7 @@ GPL-3.0
 
 ### Prerequisites 
 
-ERPNext app and Frappe HR apps are mandatory for ProjectIT PWA mobile app to work through.
+ERPNext app and Frappe HR app are mandatory for ProjectIT PWA mobile app to install.
 
 ## Installation Instructions :
 
@@ -44,16 +44,16 @@ To install the app on your phones, go to
 
 https://your-site-url/projectit
 
-eg: if my site is https://example.com, the ProjectIT mobile app can be installed from https://example.com/projectit
+eg: if the site is https://example.com, the ProjectIT mobile app can be installed from https://example.com/projectit
 
-Go to this URL on your mobile browser (Chrome/Safari) and install the app.
+Go to this URL on the mobile browser (Chrome/Safari) and install the app.
 
 Note: Firefox does not support PWA installation unless you have a plugin.
 
 ## Android :
 
-On Android, you will get a prompt to install the app on this URL.
-If you do not see the prompt, tap on the hamburger menu (three dots), and tap on Install app from the list of options.
+On Android, there will be a prompt to install the app on this URL.
+If there is no prompt, tap on the hamburger menu (three dots), and tap on Install app from the list of options.
 Tap on Install, and wait for a few seconds.
 You will then be able to find the ProjectIT app in your applications. 
 You can login to this app with your site credentials.
@@ -65,3 +65,15 @@ Scroll down the list of options, then tap Add to Home Screen.
 If you do not see "Add to Home Screen", click on "Edit Actions" and you should find the option.
 The icon will then appear on your home screen. 
 You can login to this app with your site credentials.
+
+## Setup Instructions to access ProjectIT :
+
+![image](https://github.com/user-attachments/assets/00288082-2c43-4c42-b16f-02df5e45697f)
+
+![image](https://github.com/user-attachments/assets/ed508e22-7f45-4fba-bf10-1e8238b42b89)
+
+![image](https://github.com/user-attachments/assets/22491a07-0419-4ae2-b8ef-030e575bc09c)
+
+![image](https://github.com/user-attachments/assets/b16ace89-5a39-4b2c-8d49-f88de0f20055)
+
+
