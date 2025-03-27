@@ -1,8 +1,5 @@
 <template>
     <div>
-        <!-- <div class="fixed top-20 text-[#4A6BB6] font-[400] text-[20px] left-[180px]">
-           WorkIT
-        </div> -->
         <div class=" pt-4 pl-[21px]">
             <Tab :tabs="tabs" @selected-tab="selectedTab=$event"></Tab>
         </div>

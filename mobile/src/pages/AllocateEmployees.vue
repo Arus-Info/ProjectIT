@@ -5,7 +5,7 @@
         </div>
         <div class="border-x-2 border-b-2 border-[#B9C8EA] bg-[#F5F8FF] pt-3 pb-3 pl-3 pr-3 rounded-b-lg">
             <div class="text-right">
-                <PrimaryButton name="+ New" @click="employeeResource.fetch();showNewAllocation = true"></PrimaryButton>
+                <PrimaryButton name="+ New" :disabled="showNewAllocation" @click="employeeResource.fetch();showNewAllocation = true"></PrimaryButton>
             </div>
             <div class="pb-3"></div>
             <div class="pt-2 pb-1 pl-2 pr-2" v-if="showNewAllocation">
@@ -17,7 +17,7 @@
                 </div>
                 <textarea class="w-full" v-model="instruction"></textarea>
                 <div class="pt-2 text-center">
-                    <PrimaryButton name="Add" @click="add"></PrimaryButton>
+                    <PrimaryButton name="Add" @click="add" :disabled="allocationEmployee == ''" :loading="employeeInstructionListResource.insert.loading"></PrimaryButton>
                 </div>
             </div>
             <div v-if="employeeInstructionListResource.data">
@@ -57,7 +57,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
-import { createResource,createListResource, FeatherIcon, Dialog } from 'frappe-ui';
+import { createResource,createListResource, FeatherIcon, Dialog, toast } from 'frappe-ui';
 import PrimaryButton from '../components/PrimaryButton.vue';
 
 const route = useRoute();
@@ -98,12 +98,27 @@ const employeeInstructionListResource = createListResource({
     insert : {
         onSuccess(){
             instruction.value = ''
+            allocationEmployee.value = ''
+            toast({
+                title: "Success",
+                text: "Inserted",
+                icon: "check-circle",
+                position: "bottom-right",
+                iconClasses: "text-blue-500",
+            });
             employeeResource.fetch()
         }
     },
     delete : {
         onSuccess(){
             instruction.value = ''
+            toast({
+                title: "Success",
+                text: "Deleted",
+                icon: "check-circle",
+                position: "bottom-right",
+                iconClasses: "text-blue-500",
+            });
             employeeResource.fetch()
         },
         onError(e){

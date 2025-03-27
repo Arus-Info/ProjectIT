@@ -68,14 +68,6 @@ async function logout() {
     emit('close', false);
 }
 
-// window.addEventListener('click', function(e){   
-//   if ('.modal-content'.contains(e.target)){
-//     // Clicked in box
-//   } else{
-//     emit('close',false);
-//   }
-// });
-
 </script>
 <style scoped>
 .modal-overlay {

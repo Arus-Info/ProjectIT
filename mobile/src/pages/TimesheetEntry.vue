@@ -25,7 +25,7 @@
                     <div @click="showCaption = true"
                         class="bg-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-sm pt-3 pb-3 pl-2 pr-2 flex gap-2">
                         <FeatherIcon name="download" class="h-6 w-6" />
-                        <p>Additional Photo without Checkout</p>
+                        <p>Project Status Update</p>
                     </div>
                     <div v-if="showCaption" class="text-center flex flex-col gap-3">
                         <textarea v-model="caption"></textarea>
@@ -43,10 +43,6 @@
                 </div>
             </div>
         </div>
-        <!-- <div v-if="showCamera" class=" pt-7">
-            <Camera :mode="cameraMode" @capture-event="handleImageCapture($event)" @close-event="showCamera = false">
-            </Camera>
-        </div> -->
     </div>
 
     <div v-if="showError">
@@ -59,7 +55,6 @@ import { createResource, createListResource, toast, FeatherIcon, Spinner } from 
 import { FileAttachment } from '../composables';
 import ErrorMessage from '../components/ErrorMessage.vue';
 import SelectionList from '../components/SelectionList.vue';
-import Camera from '../components/Camera.vue';
 import PrimaryButton from '../components/PrimaryButton.vue';
 import dayjs from 'dayjs';
 import ProjectOutline from './icons/ProjectOutline.vue'
@@ -184,6 +179,7 @@ const timesheet = createListResource({
                 uploading.value = false
                 cameraMode.value = 'Check-Out'
                 caption.value = ''
+                showCaption.value = false
                 toast({
                     title: "Success",
                     text: "Additional Photo Uploaded",
@@ -332,10 +328,12 @@ function checkIn() {
 }
 
 function additionalImage() {
+    let note = "<br/><p>Additional Photo added at " + dayjs().format("hh:mm:ss A") + (caption.value ? ( " with notes : " + caption.value ) : " with on notes") + "</p>"
     timesheet.setValue.submit({
         name: timesheetDetails.value.name,
-        note: timesheetDetails.value.note + "<p>Additional Photo added at " + dayjs().format("hh:mm:ss A") + " with caption " + caption.value + "</p>"
+        note: timesheetDetails.value.note + note
     })
+
 }
 
 async function checkOut() {
@@ -384,7 +382,7 @@ async function checkOut() {
     members.value = []
     timesheet.setValue.submit({
         name: timesheetDetails.value.name,
-        note: timesheetDetails.value.note + "<p> Check Out at " + dayjs().format("hh:mm:ss A") + "</p>",
+        note: timesheetDetails.value.note + "<br/><p> Check Out at " + dayjs().format("hh:mm:ss A") + "</p>",
         time_logs: time_logs,
         docstatus: 1
     })

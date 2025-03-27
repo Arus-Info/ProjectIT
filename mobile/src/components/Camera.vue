@@ -46,15 +46,12 @@ const video = ref(null)
 const canvas = ref(null)
 const ctx = ref(null)
 
-// const width = ref(window.innerWidth);
 const width = ref(window.innerWidth);
 const height = ref(window.innerHeight);
 
 const constraints = ref({
     video : {
         facingMode : "environment",
-        // width: { ideal: 4096 },
-        // height: { ideal: 2160 } 
     },
     audio : false
 })
@@ -78,9 +75,7 @@ onBeforeUnmount(() => {
 
 function Draw() {
     height.value = video.value.videoHeight
-    width.value = video.value.videoWidth
-    // console.log(video.value.videoHeight)
-    // console.log(video.value.videoWidth)
+    // width.value = video.value.videoWidth
     ctx.value.drawImage(video.value, 0, 0,canvas.value.width,video.value.videoHeight / (video.value.videoWidth / canvas.value.width))
     requestAnimationFrame(Draw)
 }
