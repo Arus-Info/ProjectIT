@@ -4,6 +4,7 @@ app_publisher = "frappe.dev@arus.co.in"
 app_description = "Project Cost Tracking Tool"
 app_email = "frappe.dev@arus.co.in"
 app_license = "gpl-3.0"
+required_apps = ["frappe","erpnext","hrms"]
 
 # Apps
 # ------------------

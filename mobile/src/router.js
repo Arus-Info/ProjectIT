@@ -44,7 +44,7 @@ let router = createRouter({
 router.beforeEach(async (to, from, next) => {
   let isLoggedIn = session.isLoggedIn
   try {
-    await userResource.fetch()
+    await userResource.Promise
   } catch (error) {
     isLoggedIn = false
   }

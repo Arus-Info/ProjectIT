@@ -74,9 +74,8 @@ onBeforeUnmount(() => {
 })
 
 function Draw() {
-    height.value = video.value.videoHeight
-    // width.value = video.value.videoWidth
-    ctx.value.drawImage(video.value, 0, 0,canvas.value.width,video.value.videoHeight / (video.value.videoWidth / canvas.value.width))
+    height.value = video.value.videoHeight / (video.value.videoWidth / canvas.value.width)
+    ctx.value.drawImage(video.value, 0, 0,canvas.value.width,height.value)
     requestAnimationFrame(Draw)
 }
 
@@ -125,7 +124,6 @@ function getCamera() {
         .then((stream) => {
             video.value.srcObject = stream
             video.value.play()
-            height.value = video.value.videoHeight
             requestAnimationFrame(Draw)
         })
 }
