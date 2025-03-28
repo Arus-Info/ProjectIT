@@ -67,6 +67,11 @@ const mobileModules = createListResource({
     }
     return t_data
   },
+  onSuccess(data){
+    if(data.length === 1){
+      router.replace({name : data[0]})
+    }
+  },
   auto : true,
 })
 
