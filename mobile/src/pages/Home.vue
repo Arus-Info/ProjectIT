@@ -52,6 +52,10 @@ const employeeResource = createResource({
   },
   onSuccess(d) {
     employee.name = d
+    mobileModules.update({
+      filters : {"name" : employee.name}
+    })
+    mobileModules.fetch()
   },
   auto: true,
 })
@@ -59,7 +63,6 @@ const employeeResource = createResource({
 const mobileModules = createListResource({
   doctype : "Employee",
   fields : ['custom_mobile_module.module_name'],
-  filters : {"name" : employee.name},
   transform(data){
     let t_data = []
     for(let d of data){
@@ -72,7 +75,6 @@ const mobileModules = createListResource({
       router.replace({name : data[0]})
     }
   },
-  auto : true,
 })
 
 </script>
