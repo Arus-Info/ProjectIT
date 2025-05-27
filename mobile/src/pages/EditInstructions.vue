@@ -23,7 +23,7 @@
                 <div>
                     <div class="flex items-center gap-3 bg-white pt-4 pb-2 pl-4">
                         <p>Select Employee</p>
-                        <select v-model="employeeInstructionId" @click="updateInstructions" class="w-40">
+                        <select v-model="employeeInstructionId" @change="updateInstructions" class="w-40">
                             <option :value="e.name" v-for="e in employeeInstructionListResource.data">{{ e.employee_name
                                 }}
                             </option>
