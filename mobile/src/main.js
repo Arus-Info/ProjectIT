@@ -13,14 +13,14 @@ import {
   resourcesPlugin,
 } from 'frappe-ui'
 
-let employeeId = localStorage.getItem("employee_id")
-if(!employeeId){
+let employeeId = localStorage.getItem('employee_id')
+if (!employeeId) {
   const employeeIdJSON = JSON.stringify({
-    name : ''
+    name: '',
   })
-  localStorage.setItem("employee_id",employeeIdJSON)
+  localStorage.setItem('employee_id', employeeIdJSON)
   employeeId = {
-    name : ''
+    name: '',
   }
 } else {
   employeeId = JSON.parse(employeeId)
@@ -38,7 +38,7 @@ app.component('Button', Button)
 app.component('Card', Card)
 app.component('Input', Input)
 
-app.provide("employee_id",employee)
+app.provide('employee_id', employee)
 
 app.mount('#app')
 

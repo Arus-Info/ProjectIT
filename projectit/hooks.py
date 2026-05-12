@@ -4,7 +4,7 @@ app_publisher = "frappe.dev@arus.co.in"
 app_description = "Project Cost Tracking Tool"
 app_email = "frappe.dev@arus.co.in"
 app_license = "gpl-3.0"
-required_apps = ["frappe","erpnext","hrms"]
+required_apps = ["frappe", "erpnext", "hrms"]
 
 # Apps
 # ------------------
@@ -12,11 +12,11 @@ required_apps = ["frappe","erpnext","hrms"]
 # required_apps = []
 
 fixtures = [
-    {"dt" : "Custom Field", "filters" : [["module" , "=" , "Projectit"]] },
-    {"dt" : "Property Setter", "filters" : [["module" , "=" , "Projectit"]] },
-    {"dt" : "DocType Link", "filters" : [["name" , "=" , "v8sdmt8hqv"]] },
-    {"dt" : "Mobile Module Item" }
-    ]
+    {"dt": "Custom Field", "filters": [["module", "=", "Projectit"]]},
+    {"dt": "Property Setter", "filters": [["module", "=", "Projectit"]]},
+    {"dt": "DocType Link", "filters": [["name", "=", "v8sdmt8hqv"]]},
+    {"dt": "Mobile Module Item"},
+]
 
 # Each item in the list will be shown as an app in the apps page
 # add_to_apps_screen = [
@@ -51,7 +51,7 @@ fixtures = [
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {"Project" : "public/js/project.js"}
+doctype_js = {"Project": "public/js/project.js"}
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -155,12 +155,8 @@ doctype_js = {"Project" : "public/js/project.js"}
 # }
 
 doc_events = {
-    "Project" : {
-        "after_insert" : "projectit.projectit.project.after_insert_of_project"
-    },
-    "Timesheet" : {
-        "on_submit" : "projectit.projectit.timesheet.on_submit_of_timesheet"
-    }
+    "Project": {"after_insert": "projectit.projectit.project.after_insert_of_project"},
+    "Timesheet": {"on_submit": "projectit.projectit.timesheet.on_submit_of_timesheet"},
 }
 
 # Scheduled Tasks
@@ -261,4 +257,6 @@ doc_events = {
 # }
 
 
-website_route_rules = [ {'from_route': '/projectit/<path:app_path>', 'to_route': 'projectit'},]
+website_route_rules = [
+    {"from_route": "/projectit/<path:app_path>", "to_route": "projectit"},
+]
