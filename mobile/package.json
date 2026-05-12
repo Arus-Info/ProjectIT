@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/assets/projectit/projectit/ && yarn copy-html-entry && yarn copy-icon",
+    "build": "vite build && yarn copy-icon",
     "preview": "vite preview",
     "copy-html-entry": "cp ../projectit/public/projectit/index.html ../projectit/www/projectit.html",
     "copy-icon": "cp -r ../mobile/src/images/ ../projectit/public/projectit/images/"
@@ -21,11 +21,17 @@
     "workbox-core": "^7.3.0",
     "workbox-precaching": "^7.3.0"
   },
+  "resolutions": {
+    "@babel/plugin-transform-modules-systemjs": "^7.29.4"
+  },
+  "overrides": {
+    "@babel/plugin-transform-modules-systemjs": "^7.29.4"
+  },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
     "autoprefixer": "^10.4.2",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.4.14",
-    "vite": "^5.4.10"
+    "vite": "^6.0.0"
   }
 }

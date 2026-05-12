@@ -28,11 +28,11 @@ export const session = reactive({
       session.login.reset()
       router.replace(data.default_route || '/home')
     },
-    onError(error){
-      if(error.exc_type  == "AuthenticationError"){
+    onError(error) {
+      if (error.exc_type == 'AuthenticationError') {
         showAuthenticationError.value = true
-      } 
-    }
+      }
+    },
   }),
   logout: createResource({
     url: 'logout',
@@ -46,4 +46,4 @@ export const session = reactive({
   isLoggedIn: computed(() => !!session.user),
 })
 
-export const showAuthenticationError = ref(false);
+export const showAuthenticationError = ref(false)

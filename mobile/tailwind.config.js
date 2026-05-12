@@ -1,5 +1,5 @@
 module.exports = {
-  presets: [require('frappe-ui/src/utils/tailwind.config')],
+  presets: [require('frappe-ui/tailwind')],
   content: [
     './index.html',
     './src/**/*.{vue,js,ts,jsx,tsx}',
