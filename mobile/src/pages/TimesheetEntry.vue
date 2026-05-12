@@ -46,10 +46,7 @@
             <textarea v-model="caption"></textarea>
             <div>
               <PrimaryButton
-                @click="
-                  showCamera = true
-                  cameraMode = 'Upload'
-                "
+                @click="openUploadCamera"
                 name="Upload"
               >
               </PrimaryButton>
@@ -363,6 +360,11 @@ function checkIn() {
       },
     ],
   })
+}
+
+function openUploadCamera() {
+  showCamera.value = true
+  cameraMode.value = 'Upload'
 }
 
 function additionalImage() {
