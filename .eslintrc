@@ -1,0 +1,32 @@
+{
+	"env": {
+		"browser": true,
+		"node": true,
+		"es2022": true
+	},
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": 2022
+	},
+	"extends": "eslint:recommended",
+	"rules": {
+		"no-unused-vars": "off",
+		"no-console": "warn",
+		"no-undef": "off"
+	},
+	"root": true,
+	"globals": {
+		"frappe": true,
+		"__": true,
+		"cur_frm": true,
+		"cur_dialog": true,
+		"cur_page": true,
+		"cur_list": true,
+		"refresh_field": true,
+		"flt": true,
+		"cint": true,
+		"cstr": true,
+		"locals": true,
+		"in_list": true
+	}
+}
