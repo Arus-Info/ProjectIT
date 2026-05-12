@@ -4,20 +4,13 @@
   </div>
   <div v-else>
     <div class="pt-7 text-right pr-7" v-if="!showCamera">
-      <PrimaryButton
-        @click="showCamera = true"
-        :disabled="projectName == ''"
-        :name="actionName"
-      ></PrimaryButton>
+      <PrimaryButton @click="showCamera = true" :disabled="projectName == ''" :name="actionName"></PrimaryButton>
     </div>
     <div v-if="!showCamera">
       <div v-if="actionName == 'Check-In'">
         <div class="pt-7 pl-6 pr-6 font-[Inter] font-[600]">
-          <SelectionList
-            :dataList="projectAllocationResource"
-            @select-event="handleProjectSelection($event)"
-            :noData="isProjectAllocated"
-          >
+          <SelectionList :dataList="projectAllocationResource" @select-event="handleProjectSelection($event)"
+            :noData="isProjectAllocated">
           </SelectionList>
         </div>
       </div>
@@ -29,26 +22,20 @@
           </p>
         </div>
         <div
-          class="bg-[#F5F8FF] pl-4 pr-3 pt-5 pb-3 rounded-b-md border-[#B9C8EA] border-x-2 border-b-2 flex flex-col gap-3"
-        >
+          class="bg-[#F5F8FF] pl-4 pr-3 pt-5 pb-3 rounded-b-md border-[#B9C8EA] border-x-2 border-b-2 flex flex-col gap-3">
           <p>
             Check-In Time :
             {{ dayjs(timesheetDetails.from_time).format('hh:mm:ss a') }}
           </p>
-          <div
-            @click="showCaption = true"
-            class="bg-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-sm pt-3 pb-3 pl-2 pr-2 flex gap-2"
-          >
+          <div @click="showCaption = true"
+            class="bg-white shadow-[0_4px_4px_rgba(0,0,0,0.25)] rounded-sm pt-3 pb-3 pl-2 pr-2 flex gap-2">
             <FeatherIcon name="download" class="h-6 w-6" />
             <p>Project Status Update</p>
           </div>
           <div v-if="showCaption" class="text-center flex flex-col gap-3">
             <textarea v-model="caption"></textarea>
             <div>
-              <PrimaryButton
-                @click="openUploadCamera"
-                name="Upload"
-              >
+              <PrimaryButton @click="openUploadCamera" name="Upload">
               </PrimaryButton>
             </div>
           </div>
@@ -64,10 +51,7 @@
   </div>
 
   <div v-if="showError">
-    <ErrorMessage
-      @dialog-event="showError = $event"
-      :error-message="errorMessage"
-    ></ErrorMessage>
+    <ErrorMessage @dialog-event="showError = $event" :error-message="errorMessage"></ErrorMessage>
   </div>
 </template>
 <script setup>
