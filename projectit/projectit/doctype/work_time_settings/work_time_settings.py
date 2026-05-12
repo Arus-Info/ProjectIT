@@ -6,4 +6,4 @@ from frappe.model.document import Document
 
 
 class WorkTimeSettings(Document):
-	pass
+    pass

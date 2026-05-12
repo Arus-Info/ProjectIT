@@ -26,7 +26,7 @@ ProjectIT is an Open Source PWA mobile app to track the Employees out in the fie
 
 GPL-3.0
 
-### Prerequisites 
+### Prerequisites
 
 ERPNext app and Frappe HR app are mandatory for ProjectIT PWA mobile app to install.
 
@@ -55,7 +55,7 @@ Note: Firefox does not support PWA installation unless you have a plugin.
 On Android, there will be a prompt to install the app on this URL.
 If there is no prompt, tap on the hamburger menu (three dots), and tap on Install app from the list of options.
 Tap on Install, and wait for a few seconds.
-You will then be able to find the ProjectIT app in your applications. 
+You will then be able to find the ProjectIT app in your applications.
 You can login to this app with your site credentials.
 
 ## iOS :
@@ -63,7 +63,7 @@ You can login to this app with your site credentials.
 On iOS, if you're using Safari, tap on the share button.
 Scroll down the list of options, then tap Add to Home Screen.
 If you do not see "Add to Home Screen", click on "Edit Actions" and you should find the option.
-The icon will then appear on your home screen. 
+The icon will then appear on your home screen.
 You can login to this app with your site credentials.
 
 ## Setup Instructions to access ProjectIT :
