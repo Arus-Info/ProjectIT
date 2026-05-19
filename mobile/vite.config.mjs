@@ -68,6 +68,8 @@ export default defineConfig({
   },
   build: {
     target: 'es2015',
+    outDir: '../projectit/public/projectit',
+    emptyOutDir: true,
   },
   optimizeDeps: {
     include: [
