@@ -17,7 +17,7 @@
 <script setup>
 import { watch, inject } from 'vue'
 import Header from './components/Header.vue'
-import { Toast } from 'frappe-ui'
+import { Toasts as Toast } from 'frappe-ui'
 import Camera from './components/Camera.vue'
 
 import { showCamera, cameraMode, imageFile } from './data/camera_context'

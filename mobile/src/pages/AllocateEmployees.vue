@@ -3,10 +3,15 @@
     <div class="bg-[#B9C8EA] pt-2 pb-3 text-center rounded-t-lg">
       <p class="text-[#4A6BB6] font-[600]">{{ route.params.project_name }}</p>
     </div>
-    <div class="border-x-2 border-b-2 border-[#B9C8EA] bg-[#F5F8FF] pt-3 pb-3 pl-3 pr-3 rounded-b-lg">
+    <div
+      class="border-x-2 border-b-2 border-[#B9C8EA] bg-[#F5F8FF] pt-3 pb-3 pl-3 pr-3 rounded-b-lg"
+    >
       <div class="text-right">
-        <PrimaryButton name="+ New" :disabled="showNewAllocation"
-          @click=" employeeResource.fetch(); showNewAllocation.value = true"></PrimaryButton>
+        <PrimaryButton
+          name="+ New"
+          :disabled="showNewAllocation"
+          @click="openNewAllocation"
+        ></PrimaryButton>
       </div>
       <div class="pb-3"></div>
       <div class="pt-2 pb-1 pl-2 pr-2" v-if="showNewAllocation">
@@ -20,17 +25,27 @@
         </div>
         <textarea class="w-full" v-model="instruction"></textarea>
         <div class="pt-2 text-center">
-          <PrimaryButton name="Add" @click="add" :disabled="allocationEmployee == ''"
-            :loading="employeeInstructionListResource.insert.loading"></PrimaryButton>
+          <PrimaryButton
+            name="Add"
+            @click="add"
+            :disabled="allocationEmployee == ''"
+            :loading="employeeInstructionListResource.insert.loading"
+          ></PrimaryButton>
         </div>
       </div>
       <div v-if="employeeInstructionListResource.data">
         <ul class="pt-5 pl-4 pr-4 pb-4">
           <li v-for="e in employeeInstructionListResource.data" class="pb-3">
-            <div class="bg-[#D6E1F9] text-[#4A6BB6] pt-3 pb-3 pl-5 pr-5 rounded-md flex items-center">
+            <div
+              class="bg-[#D6E1F9] text-[#4A6BB6] pt-3 pb-3 pl-5 pr-5 rounded-md flex items-center"
+            >
               <p>{{ e.employee_name }}</p>
               <div class="w-full flex justify-end">
-                <FeatherIcon name="user-minus" class="w-6 h-6" @click="remove(e.name)" />
+                <FeatherIcon
+                  name="user-minus"
+                  class="w-6 h-6"
+                  @click="remove(e.name)"
+                />
               </div>
             </div>
           </li>
@@ -38,25 +53,28 @@
       </div>
     </div>
   </div>
-  <Dialog :options="{
-    title: 'Confirm',
-    message: 'Are you sure you want to remove the employee ?',
-    size: 'xl',
-    icon: {
-      name: 'alert-triangle',
-      appearance: 'warning',
-    },
-    actions: [
-      {
-        label: 'Confirm',
-        variant: 'solid',
-        onClick: () => {
-          employeeInstructionListResource.delete.submit(employeeInstructionId)
-          showRemove = false
-        },
+  <Dialog
+    :options="{
+      title: 'Confirm',
+      message: 'Are you sure you want to remove the employee ?',
+      size: 'xl',
+      icon: {
+        name: 'alert-triangle',
+        appearance: 'warning',
       },
-    ],
-  }" v-model="showRemove" />
+      actions: [
+        {
+          label: 'Confirm',
+          variant: 'solid',
+          onClick: () => {
+            employeeInstructionListResource.delete.submit(employeeInstructionId)
+            showRemove = false
+          },
+        },
+      ],
+    }"
+    v-model="showRemove"
+  />
 </template>
 <script setup>
 import { ref } from 'vue'
