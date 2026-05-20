@@ -1,22 +1,13 @@
 import path from 'path'
-import { fileURLToPath } from 'url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import frappeui from 'frappe-ui/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url))
-
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    frappeui({
-      buildConfig: {
-        outDir: '../projectit/public/projectit',
-        baseUrl: '/assets/projectit/projectit/',
-        indexHtmlPath: '../projectit/www/projectit.html',
-      },
-    }),
+    frappeui(),
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
@@ -67,9 +58,9 @@ export default defineConfig({
     },
   },
   build: {
-    target: 'es2015',
-    outDir: '../projectit/public/projectit',
+    outDir: `../${path.basename(path.resolve('..'))}/public/projectit`,
     emptyOutDir: true,
+    target: 'es2015',
   },
   optimizeDeps: {
     include: [
