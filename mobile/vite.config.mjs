@@ -1,8 +1,11 @@
 import path from 'path'
+import { fileURLToPath } from 'url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import frappeui from 'frappe-ui/vite'
 import { VitePWA } from 'vite-plugin-pwa'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -57,8 +60,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, 'src'),
     },
   },
+  base: `/assets/${path.basename(path.resolve(__dirname, '..'))}/projectit/`,
   build: {
-    outDir: `../${path.basename(path.resolve('..'))}/public/projectit`,
+    outDir: `../${path.basename(path.resolve(__dirname, '..'))}/public/projectit`,
     emptyOutDir: true,
     target: 'es2015',
   },
