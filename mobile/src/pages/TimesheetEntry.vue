@@ -146,13 +146,7 @@ const employeeCheckInResource = createListResource({
   doctype: 'Employee Checkin',
   insert: {
     onSuccess() {
-      toast({
-        title: 'Success',
-        text: actionName.value === 'Check-Out' ? 'Checked-In' : 'Checked-Out',
-        icon: 'check-circle',
-        position: 'bottom-center',
-        iconClasses: 'text-blue-500',
-      })
+      toast.success(actionName.value === 'Check-Out' ? 'Checked-In' : 'Checked-Out')
       uploading.value = false
     },
   },
@@ -214,13 +208,7 @@ const timesheet = createListResource({
         cameraMode.value = 'Check-Out'
         caption.value = ''
         showCaption.value = false
-        toast({
-          title: 'Success',
-          text: 'Additional Photo Uploaded',
-          icon: 'check-circle',
-          position: 'bottom-center',
-          iconClasses: 'text-blue-500',
-        })
+        toast.success('Additional Photo Uploaded')
         timesheet.fetch()
       } else {
         timesheetEntry.value = data
