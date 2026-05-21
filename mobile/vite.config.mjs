@@ -62,7 +62,9 @@ export default defineConfig({
   },
   base: `/assets/${path.basename(path.resolve(__dirname, '..'))}/projectit/`,
   build: {
-    outDir: `../${path.basename(path.resolve(__dirname, '..'))}/public/projectit`,
+    outDir: `../${path.basename(
+      path.resolve(__dirname, '..')
+    )}/public/projectit`,
     emptyOutDir: true,
     target: 'es2015',
   },
