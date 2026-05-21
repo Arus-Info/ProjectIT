@@ -19,9 +19,8 @@ import { watch, inject } from 'vue'
 import Header from './components/Header.vue'
 import { Toasts as Toast } from 'frappe-ui'
 import Camera from './components/Camera.vue'
-
+// Context
 import { showCamera, cameraMode, imageFile } from './data/camera_context'
-
 const employeeId = inject('employee_id')
 
 watch(employeeId, () => {
