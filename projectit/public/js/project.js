@@ -1,7 +1,7 @@
 frappe.ui.form.on("Project", {
   refresh(frm) {
     frm.add_custom_button(
-      "Allocation and Instructions",
+      __("Allocation and Instructions"),
       () => {
         frappe.db
           .get_list("Project Allocation and Instrucions", {
