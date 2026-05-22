@@ -2,17 +2,20 @@
 	"env": {
 		"browser": true,
 		"node": true,
-		"es2022": true
+		"es2020": true
 	},
 	"parserOptions": {
 		"sourceType": "module",
 		"ecmaVersion": 2022
 	},
-	"extends": "eslint:recommended",
+	"extends": ["eslint:recommended", "plugin:vue/vue3-recommended"],
+	"plugins": ["vue"],
 	"rules": {
 		"no-unused-vars": "off",
 		"no-console": "warn",
-		"no-undef": "off"
+		"no-undef": "off",
+		"vue/multi-word-component-names": "off",
+		"vue/no-reserved-component-names": "off"
 	},
 	"root": true,
 	"globals": {

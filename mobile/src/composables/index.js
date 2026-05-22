@@ -19,15 +19,11 @@ export class FileAttachment {
         url: 'projectit.api.upload_base64_file',
         onSuccess: (fileDoc) => resolve(fileDoc),
         onError: (error) => {
-          toast({
-            title: 'Error',
-            text: `File upload failed for ${this.fileName}. ${
+          toast.error(
+            `File upload failed for ${this.fileName}. ${
               error.messages?.[0] || ''
-            }`,
-            icon: 'alert-circle',
-            position: 'bottom-center',
-            iconClasses: 'text-red-500',
-          })
+            }`
+          )
           reject(error)
         },
       })

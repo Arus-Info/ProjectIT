@@ -84,13 +84,7 @@ const employeeInstructionListResource = createListResource({
   setValue: {
     onSuccess() {
       employeeInstructionListResource.fetch()
-      toast({
-        title: 'Success',
-        text: 'Updated',
-        icon: 'check-circle',
-        position: 'bottom-right',
-        iconClasses: 'text-blue-500',
-      })
+      toast.success('Updated')
     },
   },
 })
@@ -107,13 +101,7 @@ const projectAllocationInstructionResource = createListResource({
   },
   setValue: {
     onSuccess() {
-      toast({
-        title: 'Success',
-        text: 'Updated',
-        icon: 'check-circle',
-        position: 'bottom-right',
-        iconClasses: 'text-blue-500',
-      })
+      toast.success('Updated')
     },
   },
 })

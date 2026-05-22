@@ -25,19 +25,21 @@
           placeholder="••••••"
           label="Password"
         />
-        <Button :loading="session.login.loading" variant="solid">Login</Button>
+        <Button type="submit" :loading="session.login.loading" variant="solid"
+          >Login</Button
+        >
       </form>
     </div>
   </div>
   <div v-if="showAuthenticationError">
     <ErrorMessage
       @dialog-event="showAuthenticationError = $event"
-      error-message="Invalid Login"
+      :error-message="loginError"
     ></ErrorMessage>
   </div>
 </template>
 <script lang="ts" setup>
-import { session, showAuthenticationError } from '../data/session'
+import { session, showAuthenticationError, loginError } from '../data/session'
 import InstallationPrompt from './InstallationPrompt.vue'
 import ErrorMessage from '../components/ErrorMessage.vue'
 
