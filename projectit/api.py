@@ -4,14 +4,14 @@ import frappe
 
 
 @frappe.whitelist()
-def get_employee_id(user_id):
+def get_employee_id(user_id: str):
     employee_id = frappe.get_list("Employee", filters={"user_id": user_id}, fields=["name"])
     if employee_id:
         return employee_id[0].name
 
 
 @frappe.whitelist()
-def get_project_allocation(employee_id):
+def get_project_allocation(employee_id: str):
     if frappe.has_permission("Project", ptype="read"):
         project_list = frappe.db.sql(
             """
@@ -30,7 +30,13 @@ def get_project_allocation(employee_id):
 
 
 @frappe.whitelist()
-def upload_base64_file(content, filename, dt=None, dn=None, fieldname=None):
+def upload_base64_file(
+    content: str,
+    filename: str,
+    dt: str | None = None,
+    dn: str | None = None,
+    fieldname: str | None = None,
+):
     import base64
     import io
     from mimetypes import guess_type
@@ -73,7 +79,7 @@ def get_work_time_settings():
     return frappe.get_single("Work Time Settings")
 
 
-@frappe.whitelist(allow_guest=True)
+@frappe.whitelist(allow_guest=True)  # nosemgrep: frappe-semgrep-rules.rules.security.guest-whitelisted-method
 def get_header_info():
     app_logo = frappe.get_single("Navbar Settings").app_logo
     company = frappe.get_single("Global Defaults").default_company
@@ -81,7 +87,7 @@ def get_header_info():
 
 
 @frappe.whitelist()
-def get_instructions(project_name, employee_id):
+def get_instructions(project_name: str, employee_id: str):
     if frappe.has_permission("Project", ptype="read"):
         data = frappe.db.sql(
             """
@@ -102,7 +108,7 @@ def get_instructions(project_name, employee_id):
 
 
 @frappe.whitelist()
-def get_team_members(project_name):
+def get_team_members(project_name: str):
     if frappe.has_permission("Project", ptype="read"):
         data = frappe.db.sql(
             """
@@ -132,7 +138,7 @@ def get_team_members(project_name):
 
 
 @frappe.whitelist()
-def get_employee_schedule(date, employee_id):
+def get_employee_schedule(date: str, employee_id: str):
     if frappe.has_permission("Project", ptype="read"):
         project_list = frappe.db.sql(
             """
@@ -151,7 +157,7 @@ def get_employee_schedule(date, employee_id):
 
 
 @frappe.whitelist()
-def project_with_members(employee_id):
+def project_with_members(employee_id: str):
     employee_id = get_employee_id(frappe.session.user)
     if employee_id:
         modules = frappe.get_list(
@@ -199,7 +205,7 @@ def get_project_list():
 
 
 @frappe.whitelist()
-def get_modules_for_router(user_id):
+def get_modules_for_router(user_id: str):
     employee_id = get_employee_id(user_id)
     modules = frappe.get_list(
         "Mobile Module",
@@ -214,7 +220,7 @@ def get_modules_for_router(user_id):
 
 
 @frappe.whitelist()
-def get_employee_with_workit(project_name):
+def get_employee_with_workit(project_name: str):
     if frappe.has_permission("Employee", ptype="read"):
         employee = frappe.db.sql(
             """
