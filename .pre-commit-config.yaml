@@ -1,4 +1,4 @@
-exclude: 'node_modules|.git'
+exclude: "node_modules|.git"
 default_stages: [pre-commit]
 fail_fast: false
 
@@ -18,7 +18,8 @@ repos:
     rev: v0.8.1
     hooks:
       - id: ruff
-        args: ["--fix"]
+        args: ["--select=I", "--fix"]
+      - id: ruff
       - id: ruff-format
 
   - repo: https://github.com/pre-commit/mirrors-prettier
@@ -27,24 +28,25 @@ repos:
       - id: prettier
         types_or: [javascript, vue, scss]
         exclude: |
-            (?x)^(
-                .*/dist/.*|
-                .*node_modules.*
-            )$
+          (?x)^(
+              .*/dist/.*|
+              .*node_modules.*
+          )$
 
   - repo: https://github.com/pre-commit/mirrors-eslint
     rev: v8.44.0
     hooks:
       - id: eslint
         types_or: [javascript]
-        args: ['--quiet']
+        args: ["--quiet"]
         additional_dependencies:
-          - eslint-plugin-vue@9.30.0
+          - eslint@8.44.0
+          - eslint-plugin-vue@9
         exclude: |
-            (?x)^(
-                .*/dist/.*|
-                .*node_modules.*
-            )$
+          (?x)^(
+              .*/dist/.*|
+              .*node_modules.*
+          )$
 
 ci:
-    autoupdate_schedule: weekly
+  autoupdate_schedule: weekly
