@@ -38,6 +38,8 @@ repos:
       - id: eslint
         types_or: [javascript]
         args: ['--quiet']
+        additional_dependencies:
+          - eslint-plugin-vue@9.30.0
         exclude: |
             (?x)^(
                 .*/dist/.*|

@@ -26,7 +26,7 @@ hrms = ">=16.0.0,<17.0.0"
 
 [tool.ruff]
 line-length = 110
-target-version = "py314"
+target-version = "py313"
 
 [tool.ruff.lint]
 select = ["F", "E", "W", "I"]

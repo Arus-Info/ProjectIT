@@ -45,10 +45,7 @@
           <div v-if="showCaption" class="text-center flex flex-col gap-3">
             <textarea v-model="caption"></textarea>
             <div>
-              <PrimaryButton
-                @click="openUploadCamera"
-                name="Upload"
-              >
+              <PrimaryButton @click="openUploadCamera" name="Upload">
               </PrimaryButton>
             </div>
           </div>
@@ -146,7 +143,9 @@ const employeeCheckInResource = createListResource({
   doctype: 'Employee Checkin',
   insert: {
     onSuccess() {
-      toast.success(actionName.value === 'Check-Out' ? 'Checked-In' : 'Checked-Out')
+      toast.success(
+        actionName.value === 'Check-Out' ? 'Checked-In' : 'Checked-Out'
+      )
       uploading.value = false
     },
   },

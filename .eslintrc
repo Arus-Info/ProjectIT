@@ -2,7 +2,7 @@
 	"env": {
 		"browser": true,
 		"node": true,
-		"es2022": true
+		"es2020": true
 	},
 	"parserOptions": {
 		"sourceType": "module",
@@ -14,7 +14,8 @@
 		"no-unused-vars": "off",
 		"no-console": "warn",
 		"no-undef": "off",
-		"vue/multi-word-component-names": "off"
+		"vue/multi-word-component-names": "off",
+		"vue/no-reserved-component-names": "off"
 	},
 	"root": true,
 	"globals": {
