@@ -83,9 +83,7 @@ def get_work_time_settings():
     return frappe.get_single("Work Time Settings")
 
 
-@frappe.whitelist(
-    allow_guest=True
-)  # nosemgrep: frappe-semgrep-rules.rules.security.guest-whitelisted-method
+@frappe.whitelist(allow_guest=True)  # nosemgrep: frappe-semgrep-rules.rules.security.guest-whitelisted-method # fmt: skip
 def get_header_info():
     app_logo = frappe.get_single("Navbar Settings").app_logo
     company = frappe.get_single("Global Defaults").default_company
