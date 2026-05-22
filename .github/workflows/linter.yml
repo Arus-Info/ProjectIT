@@ -1,49 +1,62 @@
-name: Linter
+name: Linters
 
 on:
-  push:
-    branches: [main]
   pull_request:
-    branches: [main]
+    branches:
+      - version-16
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  lint-frontend:
-    name: Lint Frontend
+  linter:
+    name: "Frappe Linter"
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: 18
-          cache: yarn
-          cache-dependency-path: mobile/yarn.lock
+          python-version: "3.14"
+          cache: pip
+      - uses: pre-commit/action@v3.0.0
 
-      - name: Install dependencies
-        run: cd mobile && yarn install --frozen-lockfile
+      - name: Download Semgrep rules
+        run: git clone --depth 1 https://github.com/frappe/semgrep-rules.git frappe-semgrep-rules
 
-      - name: Lint
-        run: cd mobile && yarn lint
+      - name: Run Semgrep rules
+        run: |
+          pip install semgrep
+          semgrep ci --config ./frappe-semgrep-rules/rules --config r/python.lang.correctness
 
-  lint-python:
-    name: Lint Python
+  deps-vulnerable-check:
+    name: "Vulnerable Dependency Check"
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+
       - uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Cache pip
+        uses: actions/cache@v4
         with:
-          python-version: '3.11'
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/*requirements.txt', '**/pyproject.toml', '**/setup.py') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+            ${{ runner.os }}-
 
-      - name: Install ruff
-        run: pip install ruff==0.8.1
-
-      - name: Lint
-        run: ruff check projectit/
-
-      - name: Format check
-        run: ruff format --check projectit/
+      - name: Install and run pip-audit
+        run: |
+          pip install pip-audit
+          cd ${GITHUB_WORKSPACE}
+          pip-audit --desc on .
