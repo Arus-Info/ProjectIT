@@ -6,15 +6,15 @@
     "dev": "vite",
     "build": "vite build && yarn copy-icon",
     "preview": "vite preview",
-    "copy-html-entry": "cp ../projectit/public/projectit/index.html ../projectit/www/projectit.html",
-    "copy-icon": "cp -r ../mobile/src/images/ ../projectit/public/projectit/images/"
+    "copy-icon": "cp -r ../mobile/src/images/ ../projectit/public/projectit/images/",
+    "lint": "eslint 'src/**/*.{js,vue}' --quiet"
   },
   "dependencies": {
     "@internationalized/date": "^3.7.0",
     "dayjs": "^1.11.13",
     "feather-icons": "^4.29.2",
     "firebase": "^11.4.0",
-    "frappe-ui": "0.1.72",
+    "frappe-ui": "0.1.278",
     "vite-plugin-pwa": "^0.21.1",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5",
@@ -30,6 +30,8 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",
     "autoprefixer": "^10.4.2",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.30.0",
     "postcss": "^8.4.5",
     "tailwindcss": "^3.4.14",
     "vite": "^6.0.0"

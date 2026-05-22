@@ -29,9 +29,11 @@ export const session = reactive({
       router.replace(data.default_route || '/home')
     },
     onError(error) {
-      if (error.exc_type == 'AuthenticationError') {
-        showAuthenticationError.value = true
-      }
+      showAuthenticationError.value = true
+      loginError.value =
+        error.exc_type == 'AuthenticationError'
+          ? 'Invalid credentials. Please try again.'
+          : error.message || 'Login failed. Please try again.'
     },
   }),
   logout: createResource({
@@ -47,3 +49,4 @@ export const session = reactive({
 })
 
 export const showAuthenticationError = ref(false)
+export const loginError = ref('')
