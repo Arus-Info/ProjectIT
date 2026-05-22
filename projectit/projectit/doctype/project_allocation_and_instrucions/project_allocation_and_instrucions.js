@@ -3,7 +3,7 @@
 
 frappe.ui.form.on("Project Allocation and Instrucions", {
   refresh(frm) {
-    frm.add_custom_button("Back", () => {
+    frm.add_custom_button(__("Back"), () => {
       frappe.set_route("Form", "Project", frm.doc.project);
     });
   },
