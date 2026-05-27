@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - version-16
+      - develop
   workflow_dispatch:
 
 permissions:
