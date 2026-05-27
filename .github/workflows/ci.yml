@@ -4,10 +4,12 @@ on:
   push:
     branches:
       - version-16
+      - develop
 
   pull_request:
     branches:
       - version-16
+      - develop
 
 env:
   BRANCH: ${{ github.base_ref || github.ref_name }}
