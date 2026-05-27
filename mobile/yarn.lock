@@ -4741,7 +4741,8 @@ protobufjs@^7.2.5:
     "@protobufjs/path" "^1.1.2"
     "@protobufjs/pool" "^1.1.0"
     "@protobufjs/utf8" "^1.1.1"
-    "@types/node" ">=13.7.0"
+    "@typ          @click=" employeeResource.fetch(); showNewAllocation.value = true"></PrimaryButton>
+es/node" ">=13.7.0"
     long "^5.0.0"
 
 punycode@^2.1.0:
