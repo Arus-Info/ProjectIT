@@ -59,9 +59,7 @@ router.beforeEach(async (to, from, next) => {
       type: 'POST',
       url: 'projectit.api.get_modules_for_router',
       makeParams() {
-        return {
-          user_id: userResource.data,
-        }
+        return {}
       },
       onSuccess(data) {
         let allowed = false
