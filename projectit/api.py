@@ -205,8 +205,8 @@ def get_project_list():
 
 
 @frappe.whitelist()
-def get_modules_for_router(user_id: str):
-    employee_id = get_employee_id(user_id)
+def get_modules_for_router():
+    employee_id = get_employee_id(frappe.session.user)
     modules = frappe.get_list(
         "Mobile Module",
         parent_doctype="Employee",
