@@ -73,6 +73,7 @@ const constraints = ref({
 
 const showPreview = ref(false)
 const imageFile = ref(null)
+let animationFrameId = null
 
 onMounted(async () => {
   if (video.value && canvas.value) {
@@ -82,16 +83,21 @@ onMounted(async () => {
 })
 
 onBeforeUnmount(() => {
+  if (animationFrameId !== null) {
+    cancelAnimationFrame(animationFrameId)
+    animationFrameId = null
+  }
   if (video.value) {
     stopCamera()
   }
 })
 
 function Draw() {
+  if (!video.value || !canvas.value) return
   height.value =
     video.value.videoHeight / (video.value.videoWidth / canvas.value.width)
   ctx.value.drawImage(video.value, 0, 0, canvas.value.width, height.value)
-  requestAnimationFrame(Draw)
+  animationFrameId = requestAnimationFrame(Draw)
 }
 
 function stopCamera() {
@@ -143,7 +149,7 @@ function getCamera() {
   navigator.mediaDevices.getUserMedia(constraints.value).then((stream) => {
     video.value.srcObject = stream
     video.value.play()
-    requestAnimationFrame(Draw)
+    animationFrameId = requestAnimationFrame(Draw)
   })
 }
 </script>

@@ -26,7 +26,7 @@ const timesheet = createListResource({
   transform(data) {
     data = data.map(({ modified, ...data }) => data)
     for (let d of data) {
-      d.hours = Number(d.hours.toFixed(1))
+      d.hours = d.hours != null ? Number(d.hours.toFixed(1)) : 0
     }
     return data
   },

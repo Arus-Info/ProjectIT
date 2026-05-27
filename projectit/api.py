@@ -5,9 +5,7 @@ import frappe
 
 @frappe.whitelist()
 def get_employee_id(user_id: str):
-    employee_id = frappe.get_list(
-        "Employee", filters={"user_id": user_id}, fields=["name"]
-    )
+    employee_id = frappe.get_list("Employee", filters={"user_id": user_id}, fields=["name"])
     if employee_id:
         return employee_id[0].name
 
@@ -49,9 +47,7 @@ def upload_base64_file(
     decoded_content = base64.b64decode(content)
     content_type = guess_type(filename)[0]
     if content_type not in ALLOWED_MIMETYPES:
-        frappe.throw(
-            frappe._("You can only upload JPG, PNG, PDF, TXT or Microsoft documents.")
-        )
+        frappe.throw(frappe._("You can only upload JPG, PNG, PDF, TXT or Microsoft documents."))
 
     if content_type.startswith("image/jpeg"):
         # transpose the image according to the orientation tag, and remove the orientation data
@@ -83,9 +79,7 @@ def get_work_time_settings():
     return frappe.get_single("Work Time Settings")
 
 
-@frappe.whitelist(
-    allow_guest=True
-)  # nosemgrep: frappe-semgrep-rules.rules.security.guest-whitelisted-method
+@frappe.whitelist(allow_guest=True)  # nosemgrep: frappe-semgrep-rules.rules.security.guest-whitelisted-method
 def get_header_info():
     app_logo = frappe.get_single("Navbar Settings").app_logo
     company = frappe.get_single("Global Defaults").default_company
@@ -206,9 +200,7 @@ def project_with_members(employee_id: str):
 
 @frappe.whitelist()
 def get_project_list():
-    project_list = frappe.get_list(
-        "Project", filters={"status": "Open"}, fields=["project_name"]
-    )
+    project_list = frappe.get_list("Project", filters={"status": "Open"}, fields=["project_name"])
     return project_list
 
 
