@@ -9,7 +9,7 @@
       <div class="text-right">
         <PrimaryButton
           name="+ New"
-          :disabled="showNewAllocation"
+          :disabled="showNewAllocation || !projectInstructionId"
           @click="openNewAllocation"
         ></PrimaryButton>
       </div>
@@ -17,18 +17,19 @@
       <div class="pt-2 pb-1 pl-2 pr-2" v-if="showNewAllocation">
         <div class="flex items-center gap-3 bg-white pt-4 pb-2 pl-4">
           <p>Select Employee</p>
-          <select v-model="allocationEmployee" class="w-40">
-            <option :value="e.name" v-for="e in employeeResource.data">
-              {{ e.employee_name }}
-            </option>
-          </select>
+          <Autocomplete
+            v-model="allocationEmployee"
+            :options="employeeOptions"
+            placeholder="Select..."
+            class="w-40"
+          />
         </div>
         <textarea class="w-full" v-model="instruction"></textarea>
         <div class="pt-2 text-center">
           <PrimaryButton
             name="Add"
             @click="add"
-            :disabled="allocationEmployee == ''"
+            :disabled="!allocationEmployee"
             :loading="employeeInstructionListResource.insert.loading"
           ></PrimaryButton>
         </div>
@@ -77,7 +78,7 @@
   />
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import {
   createResource,
@@ -85,6 +86,7 @@ import {
   FeatherIcon,
   Dialog,
   toast,
+  Autocomplete,
 } from 'frappe-ui'
 import PrimaryButton from '../components/PrimaryButton.vue'
 
@@ -98,7 +100,7 @@ const showNewAllocation = ref(false)
 const showRemove = ref(false)
 
 const instruction = ref('')
-const allocationEmployee = ref('')
+const allocationEmployee = ref(null)
 
 const employeeResource = createResource({
   url: 'projectit.api.get_employee_with_workit',
@@ -106,6 +108,13 @@ const employeeResource = createResource({
     return { project_name: route.params.project_name }
   },
 })
+
+const employeeOptions = computed(() =>
+  (employeeResource.data || []).map((e) => ({
+    label: e.employee_name,
+    value: e.name,
+  }))
+)
 
 const projectAllocationInstructionResource = createListResource({
   doctype: 'Project Allocation and Instrucions',
@@ -126,7 +135,7 @@ const employeeInstructionListResource = createListResource({
   insert: {
     onSuccess() {
       instruction.value = ''
-      allocationEmployee.value = ''
+      allocationEmployee.value = null
       toast.success('Inserted')
       employeeResource.fetch()
     },
@@ -154,11 +163,12 @@ function remove(ei_name) {
 }
 
 function add() {
+  if (!projectInstructionId.value) return
   employeeInstructionListResource.insert.submit({
     parenttype: 'Project Allocation and Instrucions',
     parentfield: 'allocation',
     parent: projectInstructionId.value,
-    employee: allocationEmployee.value,
+    employee: allocationEmployee.value?.value,
     instructions: instruction.value,
   })
 }
