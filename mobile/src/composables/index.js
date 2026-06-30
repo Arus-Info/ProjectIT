@@ -29,7 +29,6 @@ export class FileAttachment {
       })
 
       reader.onload = () => {
-        console.log('Loaded successfully ✅')
         this.fileContents = reader.result.toString().split(',')[1]
 
         uploader.submit({

@@ -31,18 +31,13 @@
         <div>
           <div class="flex items-center gap-3 bg-white pt-4 pb-2 pl-4">
             <p>Select Employee</p>
-            <select
+            <Autocomplete
               v-model="employeeInstructionId"
-              @change="updateInstructions"
+              :options="employeeOptions"
+              placeholder="Select..."
               class="w-40"
-            >
-              <option
-                :value="e.name"
-                v-for="e in employeeInstructionListResource.data"
-              >
-                {{ e.employee_name }}
-              </option>
-            </select>
+              @change="updateInstructions"
+            />
           </div>
           <div v-if="employeeInstructionId">
             <textarea
@@ -65,8 +60,8 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import PrimaryButton from '../components/PrimaryButton.vue'
-import { ref } from 'vue'
-import { createListResource, toast } from 'frappe-ui'
+import { ref, computed } from 'vue'
+import { createListResource, toast, Autocomplete } from 'frappe-ui'
 
 const route = useRoute()
 
@@ -74,7 +69,7 @@ const projectInstruction = ref('')
 const projectInstructionId = ref('')
 
 const employeeInstruction = ref('')
-const employeeInstructionId = ref('')
+const employeeInstructionId = ref(null)
 
 const employeeInstructionListResource = createListResource({
   doctype: 'Employee Allocation Instruction',
@@ -88,6 +83,13 @@ const employeeInstructionListResource = createListResource({
     },
   },
 })
+
+const employeeOptions = computed(() =>
+  (employeeInstructionListResource.data || []).map((e) => ({
+    label: e.employee_name,
+    value: e.name,
+  }))
+)
 
 const projectAllocationInstructionResource = createListResource({
   doctype: 'Project Allocation and Instrucions',
@@ -115,7 +117,7 @@ function setInstructions() {
 
 function setEmployeeInstruction() {
   employeeInstructionListResource.setValue.submit({
-    name: employeeInstructionId.value,
+    name: employeeInstructionId.value?.value,
     instructions: employeeInstruction.value,
   })
 }
@@ -123,7 +125,7 @@ function setEmployeeInstruction() {
 function updateInstructions() {
   if (employeeInstructionId.value) {
     let instructions = employeeInstructionListResource.data.find(
-      (d) => d.name === employeeInstructionId.value
+      (d) => d.name === employeeInstructionId.value?.value
     )
     employeeInstruction.value = instructions.instructions
   }
