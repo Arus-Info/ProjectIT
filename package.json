@@ -15,5 +15,11 @@
   "devDependencies": {
     "eslint": "^8.44.0",
     "eslint-plugin-vue": "^9.33.0"
+  },
+  "resolutions": {
+    "js-yaml": "^4.2.0"
+  },
+  "overrides": {
+    "js-yaml": "^4.2.0"
   }
 }
